@@ -1,4 +1,4 @@
-# System Design Course
+# System Design
 
 Hey, welcome to the course. I hope this course provides a great learning experience.
 
@@ -320,7 +320,7 @@ There are more record types but for now, let's look at some of the most commonly
 - **NS (Name Server records)**: Stores the name server for a DNS entry.
 - **SOA (Start of Authority)**: Stores admin information about a domain.
 - **SRV (Service Location record)**: Specifies a port for specific services.
-- **PTR (Reverse-lookup Pointer records)**: Provides a domain name in reverse lookups.
+- **PTR (Reverse-lookup Pointer record)**: Provides a domain name in reverse lookups.
 - **CERT (Certificate record)**: Stores public key certificates.
 
 ## Subdomains
@@ -1327,7 +1327,7 @@ Dense indexes require more maintenance than sparse indexes at write-time. Since 
 
 ## Sparse Index
 
-In a sparse index, records are created only for some of the records.
+In a sparse index, index records are created only for some of the records.
 
 ![sparse-index](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/indexes/sparse-index.png)
 
@@ -1595,7 +1595,7 @@ _The PACELC theorem was first described by [Daniel J. Abadi](https://scholar.goo
 
 PACELC theorem was developed to address a key limitation of the CAP theorem as it makes no provision for performance or latency.
 
-For example, according to the CAP theorem, a database can be considered Available if a query returns a response after 30 days. Obviously, such latency would be unacceptable for any real-world application.
+For example, according to the CAP theorem, a database can be considered available if a query returns a response after 30 days. Obviously, such latency would be unacceptable for any real-world application.
 
 # Transactions
 
@@ -1797,11 +1797,11 @@ But why do we need sharding? Here are some advantages:
 
 - **Complexity**: Sharding increases the complexity of the system in general.
 - **Joins across shards**: Once a database is partitioned and spread across multiple machines it is often not feasible to perform joins that span multiple database shards. Such joins will not be performance efficient since data has to be retrieved from multiple servers.
-- **Rebalancing**: If the data distribution is not uniform or there is a lot of load on a single shard, in such cases we have to rebalance our shards so that the requests are as equally distributed among the shards as possible.
+- **Rebalancing**: If the data distribution is not uniform or there is a lot of load on a single shard, in such cases, we have to rebalance our shards so that the requests are as equally distributed among the shards as possible.
 
 ## When to use sharding?
 
-Here are some reasons where sharding might be the right choice:
+Here are some reasons why sharding might be the right choice:
 
 - Leveraging existing hardware instead of high-end machines.
 - Maintain data in distinct geographic regions.
@@ -1925,7 +1925,7 @@ Where,
 
 As VNodes help spread the load more evenly across the physical nodes on the cluster by diving the hash ranges into smaller subranges, this speeds up the re-balancing process after adding or removing nodes. This also helps us reduce the probability of hotspots.
 
-## Data replication
+## Data Replication
 
 To ensure high availability and durability, consistent hashing replicates each data item on multiple `N` nodes in the system where the value `N` is equivalent to the _replication factor_.
 
@@ -2060,7 +2060,7 @@ Message brokers can validate, store, route, and deliver messages to the appropri
 Message brokers offer two basic message distribution patterns or messaging styles:
 
 - **[Point-to-Point messaging](https://karanpratapsingh.com/courses/system-design/message-queues)**: This is the distribution pattern utilized in message queues with a one-to-one relationship between the message's sender and receiver.
-- **[Publish-subscribe messaging](https://karanpratapsingh.com/courses/system-design/publish-subscribe)**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
+- **[Publish-Subscribe messaging](https://karanpratapsingh.com/courses/system-design/publish-subscribe)**: In this message distribution pattern, often referred to as _"pub/sub"_, the producer of each message publishes it to a topic, and multiple message consumers subscribe to topics from which they want to receive messages.
 
 _We will discuss these messaging patterns in detail in the later tutorials._
 
@@ -2221,7 +2221,7 @@ Message topics authenticate applications that try to publish content, this allow
 
 ## Examples
 
-Here are some technologies commonly used for publish-subscribe:
+Here are some commonly used publish-subscribe technologies:
 
 - [Amazon SNS](https://aws.amazon.com/sns)
 - [Google Pub/Sub](https://cloud.google.com/pubsub)
@@ -2287,7 +2287,7 @@ Some common disadvantages of monoliths are:
 - Reduced reliability as a single bug can bring down the entire system.
 - Difficult to scale or adopt new technologies.
 
-## Modular monoliths
+## Modular Monoliths
 
 A Modular Monolith is an approach where we build and deploy a single application (that's the _Monolith_ part), but we build it in a way that breaks up the code into independent modules for each of the features needed in our application.
 
@@ -3383,7 +3383,7 @@ Here are the most common disadvantages of OAuth 2.0:
 
 OAuth 2.0 is designed only for _authorization_, for granting access to data and features from one application to another. OpenID Connect (OIDC) is a thin layer that sits on top of OAuth 2.0 that adds login and profile information about the person who is logged in.
 
-When an Authorization Server supports OIDC, it is sometimes called an identity provider (IdP), since it provides information about the Resource Owner back to the Client. OpenID Connect is relatively new, resulting in lower adoption and industry implementation of best practices compared to OAuth.
+When an Authorization Server supports OIDC, it is sometimes called an Identity Provider (IdP), since it provides information about the Resource Owner back to the Client. OpenID Connect is relatively new, resulting in lower adoption and industry implementation of best practices compared to OAuth.
 
 ### Concepts
 
@@ -3519,7 +3519,7 @@ System design is a very extensive topic and system design interviews are designe
 
 Expectations are quite different at different engineering levels as well. This is because someone with a lot of practical experience will approach it quite differently from someone who's new in the industry. As a result, it's hard to come up with a single strategy that will help us stay organized during the interview.
 
-Let's look at some common strategies for the system design interviews:
+Let's look at some common strategies for system design interviews:
 
 ## Requirements clarifications
 
@@ -4215,9 +4215,9 @@ Message (`Message`): The message (text, image, video, etc.) that the user wants 
 
 Result (`boolean`): Represents whether the operation was successful or not.
 
-### Join or leave a group
+### Join or leave a channel
 
-Send a message from a user to a channel (chat or group).
+Allows the user to join or leave a channel (chat or group).
 
 ```tsx
 joinGroup(userID: UUID, channelID: UUID): boolean
@@ -4248,7 +4248,7 @@ This is an HTTP-based service that handles user-related concerns such as authent
 
 **Chat Service**
 
-The chat service will use WebSockets and establish connections with the client to handle chat and group message-related functionality. We can also use cache to keep track of all the active connections sort of like sessions which will help us determine if the user is online or not.
+The chat service will use WebSockets to establish connections with the client to handle chat and group message-related functionality. We can also use cache to keep track of all the active connections, sort of like sessions which will help us determine if the user is online or not.
 
 **Notification Service**
 
@@ -4282,7 +4282,7 @@ The client can periodically send an HTTP request to servers to check if there ar
 
 The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) or [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) for this.
 
-The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) is a better choice because then we can push data to the client once it's available without any delay, given the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) which are only unidirectional.
+The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) which are only unidirectional.
 
 _Note: Learn more about [Long polling, WebSockets, Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events)._
 
@@ -4298,7 +4298,7 @@ To implement the last seen functionality, we can use a [heartbeat](<https://en.w
 
 This will give us the last time the user was active. This functionality will be handled by the presence service combined with [Redis](https://redis.io) or [Memcached](https://memcached.org) as our cache.
 
-Another way to implement this is to track the latest action of the user, once the last activity crosses a certain threshold, such as _"user hasn't performed any action in the last 30 seconds"_, we can show the user as offline and last seen with the last recorded timestamp. This will be more of a lazy update approach and might benefit us over heartbeat in certain cases.
+Another way to implement this is to track the latest action of the user, once the last activity crosses a certain threshold, such as _"user hasn't performed any action in the last 30 seconds"_, we can show the user as offline and last seen with the last recorded timestamp. This will be more of a lazy update approach and might benefit us over heartbeat mechanism in certain cases.
 
 ### Notifications
 
@@ -4757,7 +4757,7 @@ _For more details, refer to [Sharding](https://karanpratapsingh.com/courses/syst
 
 ### Mutual friends
 
-For mutual friends, we can build a social graph for every user. Each node in the graph will represent a user and a directional edge will represent followers and followees. After that, we can traverse the followers of a user to find and suggest a mutual friend. This would require a graph database such as [Neo4j](https://neo4j.com) and [ArangoDB](https://www.arangodb.com).
+For mutual friends, we can build a social graph for every user. Each node in the graph will represent a user and a directional edge will represent followers and followees. After that, we can traverse the followers of a user to find and suggest a mutual friend. This would require a graph database such as [Neo4j](https://neo4j.com) or [ArangoDB](https://www.arangodb.com).
 
 This is a pretty simple algorithm, to improve our suggestion accuracy, we will need to incorporate a recommendation model which uses machine learning as part of our algorithm.
 
@@ -4860,10 +4860,10 @@ $$
 200 \space million \times 5 \space videos = 1 \space billion/day
 $$
 
-Assuming a `200:1` read/write ratio, about 50 million videos will be uploaded every day.
+Assuming a `200:1` read/write ratio, about 5 million videos will be uploaded every day.
 
 $$
-\frac{1}{200} \times 1 \space billion = 50 \space million/day
+\frac{1}{200} \times 1 \space billion = 5 \space million/day
 $$
 
 **What would be Requests Per Second (RPS) for our system?**
@@ -4876,24 +4876,24 @@ $$
 
 ### Storage
 
-If we assume each video is 100 MB on average, we will require about 5 PB of storage every day.
+If we assume each video is 100 MB on average, we will require about 500 TB of storage every day.
 
 $$
-50 \space million \times 100 \space MB = 5 \space PB/day
+5 \space million \times 100 \space MB = 500 \space TB/day
 $$
 
-And for 10 years, we will require an astounding 18,250 PB of storage.
+And for 10 years, we will require an astounding 1,825 PB of storage.
 
 $$
-5 \space PB \times 365 \space days \times 10 \space years = \sim 18,250 \space PB
+500 \space TB \times 365 \space days \times 10 \space years = \sim 1,825 \space PB
 $$
 
 ### Bandwidth
 
-As our system is handling 5 PB of ingress every day, we will require a minimum bandwidth of around 58 GB per second.
+As our system is handling 500 TB of ingress every day, we will require a minimum bandwidth of around 5.8 GB per second.
 
 $$
-\frac{5 \space PB}{(24 \space hrs \times 3600 \space seconds)} = \sim 58 \space GB/second
+\frac{500 \space TB}{(24 \space hrs \times 3600 \space seconds)} = \sim 5.8 \space GB/second
 $$
 
 ### High-level estimate
@@ -4904,9 +4904,9 @@ Here is our high-level estimate:
 | ------------------------- | ----------- |
 | Daily active users (DAU)  | 200 million |
 | Requests per second (RPS) | 12K/s       |
-| Storage (per day)         | ~5 PB       |
-| Storage (10 years)        | ~18,250 PB  |
-| Bandwidth                 | ~58 GB/s    |
+| Storage (per day)         | ~500 TB     |
+| Storage (10 years)        | ~1,825 PB   |
+| Bandwidth                 | ~5.8 GB/s   |
 
 ## Data model design
 
@@ -4960,7 +4960,7 @@ Title (`string`): Title of the new video.
 
 Description (`string`): Description of the new video.
 
-Data (`Byte[]`): Byte stream of the video data.
+Data (`byte[]`): Byte stream of the video data.
 
 Tags (`string[]`): Tags for the video _(optional)_.
 
@@ -5299,7 +5299,7 @@ $$
 
 ### Bandwidth
 
-As our system is handling 400 GB of ingress every day, we will require a minimum bandwidth of around 4 MB per second.
+As our system is handling 400 GB of ingress every day, we will require a minimum bandwidth of around 5 MB per second.
 
 $$
 \frac{400 \space GB}{(24 \space hrs \times 3600 \space seconds)} = \sim 5 \space MB/second
@@ -5527,7 +5527,7 @@ The client can periodically send an HTTP request to servers to report its curren
 
 The client opens a long-lived connection with the server and once new data is available it will be pushed to the client. We can use [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) or [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) for this.
 
-The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) is a better choice because then we can push data to the client once it's available without any delay, given the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) which are only unidirectional.
+The pull model approach is not scalable as it will create unnecessary request overhead on our servers and most of the time the response will be empty, thus wasting our resources. To minimize latency, using the push model with [WebSockets](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#websockets) is a better choice because then we can push data to the client once it's available without any delay, given that the connection is open with the client. Also, WebSockets provide full-duplex communication, unlike [Server-Sent Events (SSE)](https://karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events#server-sent-events-sse) which are only unidirectional.
 
 Additionally, the client application should have some sort of background job mechanism to ping GPS location while the application is in the background.
 
@@ -5549,7 +5549,7 @@ However, this is not scalable, and performing this query on large datasets will 
 
 **Geohashing**
 
-[Geohashing](/courses/sytem-design/geohashing-and-quadtrees#geohashing) is a [geocoding](https://en.wikipedia.org/wiki/Address_geocoding) method used to encode geographic coordinates such as latitude and longitude into short alphanumeric strings. It was created by [Gustavo Niemeyer](https://twitter.com/gniemeyer) in 2008.
+[Geohashing](https://karanpratapsingh.com/courses/system-design/geohashing-and-quadtrees#geohashing) is a [geocoding](https://en.wikipedia.org/wiki/Address_geocoding) method used to encode geographic coordinates such as latitude and longitude into short alphanumeric strings. It was created by [Gustavo Niemeyer](https://twitter.com/gniemeyer) in 2008.
 
 Geohash is a hierarchical spatial index that uses Base-32 alphabet encoding, the first character in a geohash identifies the initial location as one of the 32 cells. This cell will also contain 32 cells. This means that to represent a point, the world is recursively divided into smaller and smaller cells with each additional bit until the desired precision is attained. The precision factor also determines the size of the cell.
 
@@ -5561,7 +5561,7 @@ Now, using the customer's geohash we can determine the nearest available driver 
 
 **Quadtrees**
 
-A [Quadtree](/courses/sytem-design/geohashing-and-quadtrees#quadtrees) is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of [Octrees](https://en.wikipedia.org/wiki/Octree) which are used to partition three-dimensional space.
+A [Quadtree](https://karanpratapsingh.com/courses/system-design/geohashing-and-quadtrees#quadtrees) is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of [Octrees](https://en.wikipedia.org/wiki/Octree) which are used to partition three-dimensional space.
 
 ![quadtree](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree.png)
 
@@ -5571,7 +5571,7 @@ We can save further computation by only subdividing a node after a certain thres
 
 ![quadtree-subdivision](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree-subdivision.png)
 
-[Quadtree](/courses/sytem-design/geohashing-and-quadtrees#quadtrees) seems perfect for our use case, we can update the Quadtree every time we receive a new location update from the driver. To reduce the load on the quadtree servers we can use an in-memory datastore such as [Redis](https://redis.io) to cache the latest updates. And with the application of mapping algorithms such as the [Hilbert curve](https://en.wikipedia.org/wiki/Hilbert_curve), we can perform efficient range queries to find nearby drivers for the customer.
+[Quadtree](https://karanpratapsingh.com/courses/system-design/geohashing-and-quadtrees#quadtrees) seems perfect for our use case, we can update the Quadtree every time we receive a new location update from the driver. To reduce the load on the quadtree servers we can use an in-memory datastore such as [Redis](https://redis.io) to cache the latest updates. And with the application of mapping algorithms such as the [Hilbert curve](https://en.wikipedia.org/wiki/Hilbert_curve), we can perform efficient range queries to find nearby drivers for the customer.
 
 **What about race conditions?**
 
@@ -5688,9 +5688,11 @@ Here are the resources that were referenced while creating this course.
 - [IBM Blogs](https://www.ibm.com/blogs)
 - [Fastly Blogs](https://www.fastly.com/blog)
 - [NS1 Blogs](https://ns1.com/blog)
-- [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)
+- [Grokking the System Design Interview](https://www.designgurus.io/course/grokking-the-system-design-interview)
+- [Grokking Microservices Design Patterns](https://www.designgurus.io/course/grokking-microservices-design-patterns)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [AWS Blogs](https://aws.amazon.com/blogs)
+- [Architecture Patterns by Microsoft](https://learn.microsoft.com/en-us/azure/architecture/patterns)
 - [Martin Fowler](https://martinfowler.com)
 - [PagerDuty resources](https://www.pagerduty.com/resources)
 - [VMWare Blogs](https://blogs.vmware.com/learning)
